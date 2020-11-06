@@ -1,3 +1,9 @@
-This is a private repository for shared use for the MAT 101 Final Project: DISCOVERING PATTERNS IN THE ENGLISH LANGUAGE.
+This is a private repository for shared use for the MAT 101 Final Project:\
+DISCOVERING PATTERNS IN THE ENGLISH LANGUAGE.
 
-Group: 
+Group:
+  * Alessandro De Luca
+  * Florian Derler
+  * Fabian van Laer
+  * Nicola Blom
+  * Jill Nestel
