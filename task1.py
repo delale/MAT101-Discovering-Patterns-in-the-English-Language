@@ -38,5 +38,3 @@ def instances(word, path):
         return out
     else:
         return "{} is not found in the file {}".format(word, path)
-
-print(instances('what', "test.txt"))
