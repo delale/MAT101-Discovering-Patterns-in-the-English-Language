@@ -23,7 +23,7 @@ def occurences(path):
     result = sorted dictionary according to the number of times the words occur
 
     """
-    file = open(path, 'r')
+    file = open(path, 'r', encoding='utf-8') #the encoding needs to be adjusted, debending on how the novel is saved
     content = file.read()
     #first make all the words lowercase
     content = content.lower()
