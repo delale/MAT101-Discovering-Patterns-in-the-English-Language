@@ -31,10 +31,12 @@ def instances(word, path):
 
         if word.lower() in l.lower():
             # if the word is found in the line -> append a list [line, line number]
-            out.append([l.replace('\n', ''), i])
+            out.append((l.replace('\n', ''), i))
 
     # different returns if the word was ever found in the file or not
     if len(out) > 0:
         return out
     else:
         return "{} is not found in the file {}".format(word, path)
+
+print(instances('what', "test.txt"))
