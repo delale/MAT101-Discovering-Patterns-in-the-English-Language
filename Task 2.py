@@ -72,4 +72,4 @@ def occurences(path):
 
     file.close()
 
-    return result
+    return result[::-1] #decreasing order
