@@ -5,8 +5,6 @@ pairs, each consisting of a word and the length of the word. The list should be 
 decreasing order
 '''
 
-
-
 def Wordlist(Path):                                                                        
     Book = open(Path, 'r', encoding='utf-8').read()        #Reading in Path                                  
                                                                                            
