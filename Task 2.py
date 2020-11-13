@@ -41,11 +41,7 @@ def occurences(path):
     temp_list = temp.split(' ')
     #start creating pairs of words and the number of times they occurred
     dict = {}
-    for i in range(0, len(temp_list)):
-        for j in temp_list[i]:
-            if j.isalpha() == False:
-                new = temp_list[i].replace(j, '')
-                temp_list[i] = new
+  
     #count occurences
     for i in temp_list:
         if i not in dict:
