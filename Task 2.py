@@ -36,15 +36,14 @@ def occurences(path):
     content = content.translate(str.maketrans(punctuation, " "*len(punctuation)))
 
     #add words to the list 'temp'
-    temp_list = content.split(' ')
+    temp_list = content.split()
 
     #start creating pairs of words and the number of times they occurred
     dict = {} ## key=word, value=count
 
-    for i in temp_list: ## Here I took away the j for loop since it was redundant
-        if i.isalpha() and i not in dict:
-            count = temp_list.count(i)
-            dict[i] = count
+    for i in set(temp_list): ## using a set to slightly reduce iterative time
+        if i.isalpha():
+            dict[i] = temp_list.count(i)
 
     #delete all non_words such as '' and s (resulting after a split of words like misanthropist's
     ## took away this part since '' should already not be in the dictionary as indexes of the dictionary are
@@ -60,7 +59,6 @@ def occurences(path):
     ## operator.itemgetter(1) takes the second value in each tuple
     ## this is then assigned to the key param in sorted()
     return sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
-
 
 """
 import timeit
