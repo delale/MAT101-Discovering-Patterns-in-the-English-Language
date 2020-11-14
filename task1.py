@@ -3,6 +3,8 @@ The goal of this task is to define a function that finds all instances of a give
 in a given text file. More concretely, define a function that takes a word and the file
 path to a text file as input. Its output should be a list of pairs, each consisting of a
 line in which the word occurs and the corresponding line number.
+
+For the doctest to work, please make sure the file 'Wuthering Heights.txt' is in the directory.
 """
 
 def instances(word, path):
@@ -10,6 +12,13 @@ def instances(word, path):
     Takes a word as input and finds all lines that contain the word
     returning a list of lists where each list is composed of 2 elements:
     the line and the line number
+
+    >>> instances('admired', 'Wuthering Heights.txt')
+    [('the heating spices; and admired the shining kitchen utensils, the', 1839), ('expedition to the Crags.  While I admired and they laboured, dusk drew', 11534)]
+    >>> instances('vast', 'Wuthering Heights.txt')
+    [('row, on a vast oak dresser, to the very roof.  The latter had never been', 120)]
+    >>> instances('working', 'Wuthering Heights.txt')
+    [('working at a fence round a plantation, on the borders of the grounds.  I', 6837), ('occupations of working on the farm and lounging among the moors after', 7008), ('train myself to be capable of working like Hercules, and when everything', 11564)]
 
     :param word str: word to search
     :param path str: path of the file in which to search the word
@@ -29,7 +38,10 @@ def instances(word, path):
     # itertiong through the lines: i=line number, l=line
     for i,l in enumerate(lines):
 
-        if word.lower() in l.lower():
+        # create list containing all the words in the line, all in lower case, with non-alphabetic characters removed
+        line = "".join([character.lower() for character in l if character.isalpha() or character == " "]).split()
+
+        if word.lower() in line:
             # if the word is found in the line -> append a list [line, line number]
             out.append((l.replace('\n', ''), i))
 
@@ -38,3 +50,7 @@ def instances(word, path):
         return out
     else:
         return "{} is not found in the file {}".format(word, path)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
