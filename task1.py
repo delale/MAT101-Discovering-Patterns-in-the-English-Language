@@ -29,7 +29,7 @@ def instances(word, path):
     # itertiong through the lines: i=line number, l=line
     for i,l in enumerate(lines):
 
-        if word.lower() in l.lower():
+        if word.lower() in l.lower().split():
             # if the word is found in the line -> append a list [line, line number]
             out.append((l.replace('\n', ''), i))
 
