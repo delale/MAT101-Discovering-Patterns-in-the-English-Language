@@ -11,6 +11,14 @@ def instances(word, path):
     returning a list of lists where each list is composed of 2 elements:
     the line and the line number
 
+    Examples:
+    >>> instances('admired', 'Wuthering Heights.txt')
+    [('the heating spices; and admired the shining kitchen utensils, the', 1839), ('expedition to the Crags.  While I admired and they laboured, dusk drew', 11534)]
+    >>> instances('vast', 'Wuthering Heights.txt')
+    [('row, on a vast oak dresser, to the very roof.  The latter had never been', 120)]
+    >>> instances('working', 'Wuthering Heights.txt')
+    [('working at a fence round a plantation, on the borders of the grounds.  I', 6837), ('occupations of working on the farm and lounging among the moors after', 7008), ('train myself to be capable of working like Hercules, and when everything', 11564)]
+
     :param word str: word to search
     :param path str: path of the file in which to search the word
     :return list: a list of lists where each element is a list of
@@ -38,3 +46,7 @@ def instances(word, path):
         return out
     else:
         return "{} is not found in the file {}".format(word, path)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
