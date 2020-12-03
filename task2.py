@@ -21,7 +21,7 @@ def occurences(path):
     """
 
     ## open the file, read it, make all characters lower-case
-    file = open(path, 'r')
+    file = open(path, 'r', encoding="utf8")
     content = file.read()
     content = content.lower()
 
