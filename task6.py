@@ -1,6 +1,6 @@
 """
 Task 6
-Refine the function defined in Task 2: Define a function that, given the same input as in Task 2,
+Refine the function defined in Task 1: Define a function that, given the same input as in Task 2,
 outputs a list of all the sentences containing the word in question.
 Make sure that your function removes unnecessary line breaks.
 """
@@ -69,6 +69,4 @@ def instances(path, keyword):
 # testing
 print(instances('Wuthering Heights.txt', 'lobby'))
 # Error: there are actually two instances of the word 'lobby'.
-# the problem is the second one is 'lobby,' so with line 30 we are excluding it.
-# Also I think there is a mistake in the task description: I think Fatemeh meant to refine the function from Task1 and not Task2.
-# That's why I changed the name to "instances".  
+# the problem is the second one is 'lobby,' so with line 30 we are excluding it. 
