@@ -56,14 +56,15 @@ def occurences(path):
     ## this is then assigned to the key param in sorted()
     return sorted(dict.items(), key=operator.itemgetter(1), reverse=True)
 
-
+"""
 # time testing
 import timeit
 from numpy import mean
 t=[]
 for i in range(10): # this is testing 10 times the time to run the function on the big file and then prints the mean
-    t.append(timeit.timeit("occurences('wh_ebronte.txt')", setup="from __main__ import occurences", number=1))
+    t.append(timeit.timeit("occurences('Wuthering Heights.txt')", setup="from __main__ import occurences", number=1))
 print(mean(t))
+"""
 
 # doctest
 if __name__ == "__main__":
