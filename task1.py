@@ -30,7 +30,7 @@ def instances(word, path):
     if type(path)!=str or type(word)!=str:
         raise ValueError('"path" and "word" must be of type string')
 
-    f = open(file=path)
+    f = open(file=path, encoding="utf8")
     lines = f.readlines() # list of all lines in file
     f.close()
     out = []
