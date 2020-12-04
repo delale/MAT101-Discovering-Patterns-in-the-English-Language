@@ -9,7 +9,7 @@ from task2 import occurences
 
 # task 2 returns an ordered least of pairs
 
-ttl = ("Wuthering Heights", "Title", "Title", "Title", "Title", "Title") # this will be the titles of the novels
+ttl = ("Wuthering Heights", "Alice in Wonderland", "Moby Dick", "Tristram Shandy", "Paradise Lost", "A Tale of Two Cities") # this will be the titles of the novels
 
 # no need for the variable paths as this can be achieved with string concatenation i.e. Title+'.txt'
 # as long as the novels are in the same directory of the script
