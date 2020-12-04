@@ -20,6 +20,11 @@ def instances(path, keyword):
     list_content = list of sentences
     sentences_with_keyword = list of sentences which contain the keyword
     result = final list of sentences which contain the keyword, but with original punctuation restored
+
+    >>> instances('Wuthering Heights.txt', 'lobby')
+    ["  One stop brought us into the family sitting-room, without any introductory lobby or passage: they call it here 'the house' pre-eminently.", '  He had only then come from the library; and, in passing through the lobby, had noticed our talking and been attracted by curiosity, or fear, to examine what it signified, at that late hour.']
+    >>> instances("Wuthering Heights.txt", "memories") 
+    ['  That is the sole consideration which can make me endure the whelp: I despise him for himself, and hate him for the memories he revives!']
     """
     file = open(path, 'r', encoding='utf-8')  # the encoding needs to be adjusted, debending on how the novel is saved
     content = file.read()
@@ -49,6 +54,11 @@ def instances(path, keyword):
     return result
 
 # testing
-print(instances('Wuthering Heights.txt', 'lobby'))
+# print(instances('Wuthering Heights.txt', 'lobby'))
 # Error: there are actually two instances of the word 'lobby'.
 # the problem is the second one is 'lobby,' so with line 30 we are excluding it. 
+
+# doctest
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
