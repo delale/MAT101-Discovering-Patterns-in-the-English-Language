@@ -26,7 +26,9 @@ def instances(word, path):
     Hence the following test fails:
     >>> instances("mustn't", "Wuthering Heights.txt")
     [("You mustn't think I care little for Catherine, because I behaved so", 6099), ('\'"I\'ll not hold my tongue!" I said; "you mustn\'t touch him.  Let the door', 6268), ("speak so to me?  Mustn't he be made to do as I ask him?  You wicked", 6965), ("I whispered Catherine that she mustn't, on any account, accede to the", 7643), ("my arm over her shoulder.  'You mustn't cry because papa has a cold; be", 8245), ("and to put her back in the stable: you mustn't scold him either, mind.  I", 8841), ("'I knew now that I mustn't tease him, as he was ill; and I spoke softly", 8964), ('me, and that he mustn\'t invent any more falsehoods on the subject."', 9074), ("come to the Grange?  Oh, darling Catherine! you mustn't go and leave,", 9760)]
+    
     Instead, to get the desired result, one must search for "mustnt".
+
 
     :param word str: word to search
     :param path str: path of the file in which to search the word
