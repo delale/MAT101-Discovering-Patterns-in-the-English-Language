@@ -20,7 +20,7 @@ def words_per_sentence(path):
 
     wordlist = book.lower().split()                   # Calculates amount of total words
     rubbish = 0                                       #              
-    for i in wordlist                                 #
+    for i in wordlist:                                 #
         if i != 'i' and i != 'i' and len(i) <= 1:     #
             rubbish += 1                              #
     totalwords = len(book.split()) - rubbish          #
