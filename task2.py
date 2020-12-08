@@ -17,20 +17,24 @@ def occurences(path):
     :return: list of pairs (word, number of times the word occurs)
 
     >>> occurences('test.txt')
-    [('there', 4), ('this', 3), ('why', 2), ('are', 1)]
+     [('there', 4), ('this', 3), ('why', 3), ("isn't", 2), ('are', 1), ('it', 1), ("doesn't", 1), ('work', 1)]
     """
 
     ## open the file, read it, make all characters lower-case
-    file = open(path, 'r', encoding="utf8")
+    file = open(path, 'r', encoding="utf-8")
     content = file.read()
+
+
+
     content = content.lower()
 
     ## removing special characters without using for loops
     ## str.maketrans creates a translation mapping for translate method
-    content = content.translate(str.maketrans(punctuation, " "*len(punctuation)))
+    apo = content.translate(str.maketrans("'", "A"))
+    no_punct = apo.translate(str.maketrans(punctuation, " "*len(punctuation)))
 
     #add words to the list 'temp'
-    temp_list = content.split()
+    temp_list = no_punct.split()
 
     #start creating pairs of words and the number of times they occurred
     dict = {} ## key=word, value=count
@@ -38,8 +42,8 @@ def occurences(path):
     ## I use a set since this will contain only unique items
     ## = faster iteration in the for loop
     for i in set(temp_list):
-        if i.isalpha():
-            dict[i] = temp_list.count(i)
+        if not(i=='A'):
+            dict[i.replace('A',"'")] = temp_list.count(i)
 
     #delete all non_words such as '' and s (resulting after a split of words like misanthropist's
     ## took away this part since '' should already not be in the dictionary as indexes of the dictionary are
@@ -66,7 +70,6 @@ for i in range(10): # this is testing 10 times the time to run the function on t
 print(mean(t))
 """
 
-# doctest
-if __name__ == "__main__":
+if __name__=="__main__":
     import doctest
     doctest.testmod()
