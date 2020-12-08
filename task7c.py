@@ -24,7 +24,7 @@ def wordtypes(path):
     :param path: open any text file
     :return: dictionary of all words sorted according to word type
     """
-    file = open(path, 'r')
+    file = open(path, 'r', encoding="utf8")
     content = file.read()
     l = []
     tags = ['CC', 'CD', 'DT', 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'MD', 'NN', 'NNS', 'NNP', 'NNPS', 'PDT', 'POS', 'PRP',
