@@ -13,7 +13,7 @@ def Wordlist(Path):
     :param Path str: text file path
     :return list: list of pairs (word, wordLength)
 
-    >>> Wordlist('test.txt')
+    >>> Wordlist('Test.txt')
     [('there', 5), ('this', 4), ('why', 3), ('are', 3)]
     """
 
