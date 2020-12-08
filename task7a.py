@@ -28,7 +28,7 @@ def count(word, path):
     wordlist = book.lower().split()
     rubbish = 0                                     #Removes single letters besides i and a
     for i in wordlist:                              #
-        if i != 'i' and i! = 'i' and len(i) <= 1:   #
+        if i != 'i' and i != 'i' and len(i) <= 1:   #
             rubbish += 1                            #
 
     totalwords = len(book.split()) - rubbish        #Calculation of total words
