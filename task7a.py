@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import glob
+from cleaning import cleanGut
 
 
 '''
@@ -20,7 +21,9 @@ def count(word, path):
         raise ValueError('"path" and "word" must be of type string')
 
     f = open(file= path, encoding= "utf8")          
-    book = f.read()
+    book = cleanGut(f)
+    f.close()
+
     for ch in book:
         if ch.isalpha() == False:
             book = book.replace(ch , "") # treats don't as dont

@@ -58,7 +58,7 @@ for x in range(len(ttl)):
     Words, Numbers = zip(*res[x][:20]) # extracting 20 most frequent words and their occurences
 
     ax[x % 2, x % 3].bar(Words, Numbers) # barplot
-    ax[x % 2, x % 3].set_ylabel("Occurances", fontsize=7) # y-axis label
+    ax[x % 2, x % 3].set_ylabel("Occurences", fontsize=7) # y-axis label
     ax[x % 2, x % 3].set_title(ttl[x], fontsize=10) # plot title
     ax[x % 2, x % 3].tick_params(axis="x", labelsize=8, labelrotation=90) # y-axis ticks
     ax[x % 2, x % 3].tick_params(axis="y", labelsize=8) # x-axis ticks

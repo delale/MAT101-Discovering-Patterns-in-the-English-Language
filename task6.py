@@ -5,6 +5,7 @@ outputs a list of all the sentences containing the word in question.
 Make sure that your function removes unnecessary line breaks.
 """
 
+from cleaning import cleanGut
 
 def instances(path, keyword):
     """
@@ -31,7 +32,9 @@ def instances(path, keyword):
         raise ValueError('"path" and "keyword" must be of type string')
 
     file = open(path, 'r', encoding='utf-8')  # the encoding needs to be adjusted, depending on how the novel is saved
-    content = file.read()
+    content = cleanGut(file)
+    file.close()
+
     sentences_with_keyword = []
     result = []
 

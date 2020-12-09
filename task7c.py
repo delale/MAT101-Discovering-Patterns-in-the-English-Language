@@ -1,5 +1,6 @@
 import nltk
 from nltk.tokenize import word_tokenize
+from cleaning import cleanGut
 
 def wordtypes(path):
     """
@@ -25,7 +26,7 @@ def wordtypes(path):
     :return: dictionary of all words sorted according to word type
     """
     f = open(path, 'r', encoding="utf8")
-    content = f.read()
+    content = cleanGut(f)
     f.close()
     l = []
     tags = ['CC', 'CD', 'DT', 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'MD', 'NN', 'NNS', 'NNP', 'NNPS', 'PDT', 'POS', 'PRP',

@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
 import glob
+from cleaning import cleanGut
 '''
 This program calculates the average sentence length authors use in a book.
 Any Book as text file can be entered with the Title: Author_NAMEOFAUTHOR_BOOKTITLE (NAMEOFAUTHOR and BOOKTITLE can be chosen)
 
 '''
+
 def words_per_sentence(path):
 
     # raise error when word or path are not strings
@@ -12,9 +14,11 @@ def words_per_sentence(path):
         raise ValueError('"path" must be of type string')
 
     f = open(file = path, encoding = "utf8")
-    book = f.read()
+    book = cleanGut(f)
+    f.close()
+
     sentencecount = book.count(".")  + book.count("?") + book.count("!")      #Counts sentences
-    for ch in book:                                                           
+    for ch in book:
         if ch.isalpha() == False:
             book = book.replace(ch, "") # treats don't as dont
 

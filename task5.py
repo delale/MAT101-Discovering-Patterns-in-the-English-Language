@@ -4,6 +4,7 @@ Compile a list of all the words that occur in a given text file. More concretely
 pairs, each consisting of a word and the length of the word. The list should be in
 decreasing order
 '''
+from cleaning import cleanGut
 
 def Wordlist(Path):
     """
@@ -20,7 +21,9 @@ def Wordlist(Path):
     if type(Path) != str:
         raise ValueError('"path" must be of type string')
 
-    Book = open(Path, 'r', encoding='utf-8').read()  # Reading in Path
+    fyle = open(Path, 'r', encoding='utf-8')  # Reading in Path
+    Book = cleanGut(fyle)
+    fyle.close()
 
     for character in Book:  # Getting rid of all the nonsense
         if character.isalpha() == False:
