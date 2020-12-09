@@ -14,7 +14,7 @@ def words_per_sentence(path):
     f = open(file = path, encoding = "utf8")
     book = f.read()
     sentencecount = book.count(".")  + book.count("?") + book.count("!")      #Counts sentences
-    for ch in book:                                                           #Replaces non letters with spaces
+    for ch in book:                                                           
         if ch.isalpha() == False:
             book = book.replace(ch, "") # treats don't as dont
 
