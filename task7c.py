@@ -76,7 +76,7 @@ def count_wordtypes(w):
     e = new dictionary
     d = copy of output from wordtypes()
     :param w: output from wordtypes()
-    :return: a dictionary of the word tags and the amount of words in the text file that assigned to that specific word tag
+    :return: a list of tuples of the word tags and the amount of words in the text file that assigned to that specific word tag
     """
     #this is essentially a counter for the values of each key in the output of wordtagging()
     #the number of words that were assigned to a certain word type becomes the new value
@@ -87,10 +87,12 @@ def count_wordtypes(w):
     for i in d:
         length = len(i[1])
         e[i[0]] = length
-    return e
+    
+    result = sorted(e.items(), key=lambda x: x[1])
+    return result
 
 #example output:
-#{'singular proper noun': 4, 'personal pronoun(e.g. my, his, her)': 3, 'positive adjective': 3, 'singular noun': 7, 'personal pronoun(e.g. I, he, she)': 6, 'singular verb present': 2, 'determiner': 4, 'preposition': 7, 'present participle verb': 2, 'positive adverb': 3, 'to (e.g. to go to the store)': 1, 'regular verb': 1, 'past participle verb': 2, 'verb past tense': 2, 'plural noun': 1}
+#[('to (e.g. to go to the store)', 1), ('regular verb', 1), ('plural noun', 1), ('singular verb present', 2), ('present participle verb', 2), ('past participle verb', 2), ('verb past tense', 2), ('personal pronoun(e.g. my, his, her)', 3), ('positive adjective', 3), ('positive adverb', 3), ('singular proper noun', 4), ('determiner', 4), ('personal pronoun(e.g. I, he, she)', 6), ('singular noun', 7), ('preposition', 7)]
 
 if __name__=="__main__":
     path = "Wuthering Heights.txt"
