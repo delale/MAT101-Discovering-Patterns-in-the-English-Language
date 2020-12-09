@@ -1,6 +1,6 @@
 """
 Task 6
-Refine the function defined in Task 1: Define a function that, given the same input as in Task 2,
+Refine the function defined in Task 1: Define a function that, given the same input as in Task 1,
 outputs a list of all the sentences containing the word in question.
 Make sure that your function removes unnecessary line breaks.
 """
@@ -26,7 +26,7 @@ def instances(path, keyword):
     >>> instances("Wuthering Heights.txt", "memories") 
     ['  That is the sole consideration which can make me endure the whelp: I despise him for himself, and hate him for the memories he revives!']
     """
-    file = open(path, 'r', encoding='utf-8')  # the encoding needs to be adjusted, debending on how the novel is saved
+    file = open(path, 'r', encoding='utf-8')  # the encoding needs to be adjusted, depending on how the novel is saved
     content = file.read()
     sentences_with_keyword = []
     result = []
@@ -52,11 +52,6 @@ def instances(path, keyword):
                 i = i.replace(v, marks[k])
         result.append(i)
     return result
-
-# testing
-# print(instances('Wuthering Heights.txt', 'lobby'))
-# Error: there are actually two instances of the word 'lobby'.
-# the problem is the second one is 'lobby,' so with line 30 we are excluding it. 
 
 # doctest
 if __name__ == "__main__":
