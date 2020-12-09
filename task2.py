@@ -10,7 +10,7 @@ For the doctest to work, please make sure the file 'Test.txt' and 'Test2.txt' ar
 
 from operator import itemgetter ## for better dictionary sorting
 from string import punctuation # for removing punctuation
-
+from cleaning import cleanGut
 def occurences(path):
     """
     The function should analyze the whole text file and return a list of words that are in the text file
@@ -32,7 +32,7 @@ def occurences(path):
 
     ## open the file, read it, make all characters lower-case
     file = open(path, 'r', encoding="utf8")
-    content = file.read()
+    content = cleanGut(file) # cleaning script which removes unnecessary words like "CHAPTER X" and intro and outro from Project Gutenberg
     content = content.lower()
 
     ## removing special characters without using for loops
@@ -63,7 +63,6 @@ def occurences(path):
     ## this is then assigned to the key param in sorted()
     return sorted(dict.items(), key=itemgetter(1), reverse=True)
 
-"""
 # time testing
 import timeit
 from numpy import mean
@@ -71,7 +70,7 @@ t=[]
 for i in range(10): # this is testing 10 times the time to run the function on the big file and then prints the mean
     t.append(timeit.timeit("occurences('Wuthering Heights.txt')", setup="from __main__ import occurences", number=1))
 print(mean(t))
-"""
+
 
 # doctest
 if __name__ == "__main__":
