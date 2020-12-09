@@ -21,7 +21,7 @@ def count(word, path):
 
     f = open(file= path, encoding= "utf8")          
     book = f.read()
-    for ch in book:                                 #Replaces nonletters with spaces
+    for ch in book:
         if ch.isalpha() == False:
             book = book.replace(ch , "") # treats don't as dont
 
