@@ -28,10 +28,20 @@ def wordtypes(path):
     f = open(path, 'r', encoding="utf8")
     content = cleanGut(f)
     f.close()
-    l = []
+    result = {}
+    content = content.lower()
+    #remove apostrophes so that the whole word is analyzed
+    content = content.replace("'", '')
+    #remove all other non-alphabetical characters
+    for i in content:
+        if i.isalpha() == False:
+            content = content.replace(i, ' ')
+            
+    #these are the tags that the module nltk  automatically assigns to the words in the text file     
     tags = ['CC', 'CD', 'DT', 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'MD', 'NN', 'NNS', 'NNP', 'NNPS', 'PDT', 'POS', 'PRP',
         'PRP$', 'RB', 'RBR', 'RBS', 'RP', 'TO', 'UH', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'WDT', 'WP', 'WP$',
         'WRB']
+    #tag_names is just a list of names for the tags above, that is more readable, bc the original tags don't make any sense
     tag_names = ['coordinating conjunction', 'cardinal digit', 'determiner', 'EX', 'foreign word', 'preposition',
              'positive adjective', 'comparative adjective', 'superlative adjective', 'modal verb', 'singular noun',
              'plural noun', 'singular proper noun', 'plural proper noun', 'predeterminer', 'possessive ending',
@@ -40,15 +50,14 @@ def wordtypes(path):
              'regular verb', 'verb past tense', 'present participle verb', 'past participle verb',
              'singular verb present', 'third person singluar verb present', 'wh-determiner', 'wh-pronoun',
              'possessive wh-pronoun', 'wh-adverb']
-    result = {}
-    for i in content:
-        if i.isalpha() == False:
-            l.append(' ')
-        else:
-            l.append(i)
-    pure_content = ''.join(l)
-    text = word_tokenize(pure_content)
-    h = nltk.pos_tag(text)
+    
+    #here the tags are assigned to the words in the text file
+    text = word_tokenize(content)
+   
+    h = nltk.pos_tag(text) #the output is a tuple (word, tag)// e.g. (car, NN)
+    #here a dictionary is created with elements from tag names
+    #keys = elements from tag_names
+    #values = words from text file that were assigned to one of the tags
     for i in h:
         pos = tags.index(i[1])
         result[tag_names[pos]] = result.get(tag_names[pos], []) + [i[0]]
@@ -69,7 +78,9 @@ def count_wordtypes(w):
     :param w: output from wordtypes()
     :return: a dictionary of the word tags and the amount of words in the text file that assigned to that specific word tag
     """
-
+    #this is essentially a counter for the values of each key in the output of wordtagging()
+    #the number of words that were assigned to a certain word type becomes the new value
+    
     e = {}
     d = w.copy()
     d = d.items()
@@ -77,6 +88,9 @@ def count_wordtypes(w):
         length = len(i[1])
         e[i[0]] = length
     return e
+
+#example output:
+#{'singular proper noun': 4, 'personal pronoun(e.g. my, his, her)': 3, 'positive adjective': 3, 'singular noun': 7, 'personal pronoun(e.g. I, he, she)': 6, 'singular verb present': 2, 'determiner': 4, 'preposition': 7, 'present participle verb': 2, 'positive adverb': 3, 'to (e.g. to go to the store)': 1, 'regular verb': 1, 'past participle verb': 2, 'verb past tense': 2, 'plural noun': 1}
 
 if __name__=="__main__":
     path = "Wuthering Heights.txt"
