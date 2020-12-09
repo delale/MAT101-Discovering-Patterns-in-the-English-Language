@@ -23,15 +23,13 @@ def instances(word, path):
     [('working at a fence round a plantation, on the borders of the grounds.  I', 6837), ('occupations of working on the farm and lounging among the moors after', 7008), ('train myself to be capable of working like Hercules, and when everything', 11564)]
     >>> instances("mustn't", "Wuthering Heights.txt")
     [("You mustn't think I care little for Catherine, because I behaved so", 6099), ('\'"I\'ll not hold my tongue!" I said; "you mustn\'t touch him.  Let the door", 6268), ("speak so to me?  Mustn't he be made to do as I ask him?  You wicked", 6965), ("I whispered Catherine that she mustn't, on any account, accede to the", 7643), ("my arm over her shoulder.  'You mustn't cry because papa has a cold; be", 8245), ("and to put her back in the stable: you mustn't scold him either, mind.  I", 8841), ("'I knew now that I mustn't tease him, as he was ill; and I spoke softly", 8964), ('me, and that he mustn\'t invent any more falsehoods on the subject."', 9074), ("come to the Grange?  Oh, darling Catherine! you mustn't go and leave,", 9760)]
-    
-    Instead, to get the desired result, one must search for "mustnt".
-
 
     :param word str: word to search
     :param path str: path of the file in which to search the word
     :return list: a list of lists where each element is a list of
                   line and line number where the word was found
     """
+
     w = word # copy to work on, word = original for return
     # raise error when word or path are not strings
     if type(path)!=str or type(word)!=str:
@@ -45,9 +43,8 @@ def instances(word, path):
     # itertiong through the lines: i=line number, l=line
     for i,l in enumerate(lines):
         lori = l # copy of original
-        for punct in punctuation:
-            l = l.replace(punct, "") # removing punctuation (including apostrophes
-            w = w.replace(punct, "")
+        l = l.translate(str.maketrans("","",punctuation)) # punctuation -> None
+        w = w.translate(str.maketrans("","",punctuation))
 
         # create list containing all the words in the line, all in lower case, with non-alphabetic characters removed
         line = l.split()

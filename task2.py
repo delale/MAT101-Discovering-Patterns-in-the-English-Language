@@ -39,8 +39,7 @@ def occurences(path):
     ## str.maketrans creates a translation mapping for translate method
     ## apostrophes are deliberately not in the list of punctuation and are instead removed afterwards
     ## this is so that e.g. "don't" becomes "dont" and not "don t"
-    punct = punctuation.replace("'", "") # removing apostrophe from punctuation
-    content = content.translate(str.maketrans(punct, " "*len(punct), "'")) # 3rd argument in maketrans is subbed to None
+    content = content.translate(str.maketrans("", "", punctuation)) # all punctuation is set to None
 
     #add words to the list 'temp'
     temp_list = content.split()
@@ -48,21 +47,16 @@ def occurences(path):
     #start creating pairs of words and the number of times they occurred
     dict = {} ## key=word, value=count
 
-    ## I use a set since this will contain only unique items
+    ## use a set since this will contain only unique items
     ## = faster iteration in the for loop
     for i in set(temp_list):
-        if i.isalpha():
-            dict[i] = temp_list.count(i)
+        dict[i] = temp_list.count(i)
 
-    #delete all non_words such as '' and s (resulting after a split of words like misanthropist's
-    ## took away this part since '' should already not be in the dictionary as indexes of the dictionary are
-    ## only created if the key.isalpha() == True and single letters I think it's wiser to keep them and in case exclude
-    ## them later (example: a would be useful to keep)
 
     file.close()
 
-    #sort the pairs
-    ## I sort the pairs already in the return statement with the sorted function for all items and sorting
+
+    ## Sorting the pairs already in the return statement with the sorted function for all items and sorting
     ## for the value of each key
     ## sorted(dict.items()) returns a list of ordered tuples (pairs) based on the key
     ## operator.itemgetter(1) takes the second value in each tuple
