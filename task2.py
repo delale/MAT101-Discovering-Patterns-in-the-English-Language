@@ -9,6 +9,7 @@ For the doctest to work, please make sure the file 'Test.txt' and 'Test2.txt' ar
 """
 
 from operator import itemgetter ## for better dictionary sorting
+from string import punctuation # for removing punctuation
 
 def occurences(path):
     """
@@ -38,8 +39,8 @@ def occurences(path):
     ## str.maketrans creates a translation mapping for translate method
     ## apostrophes are deliberately not in the list of punctuation and are instead removed afterwards
     ## this is so that e.g. "don't" becomes "dont" and not "don t"
-    punctuation = '!"#$%&()*+, -./:;<=>?@[\]^_`{|}~'
-    content = content.translate(str.maketrans(punctuation, " "*len(punctuation), "'"))
+    punct = punctuation.replace("'", "") # removing apostrophe from punctuation
+    content = content.translate(str.maketrans(punct, " "*len(punct), "'")) # 3rd argument in maketrans is subbed to None
 
     #add words to the list 'temp'
     temp_list = content.split()
