@@ -24,8 +24,9 @@ def wordtypes(path):
     :param path: open any text file
     :return: dictionary of all words sorted according to word type
     """
-    file = open(path, 'r', encoding="utf8")
+    f = open(path, 'r', encoding="utf8")
     content = file.read()
+    f.close()
     l = []
     tags = ['CC', 'CD', 'DT', 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'MD', 'NN', 'NNS', 'NNP', 'NNPS', 'PDT', 'POS', 'PRP',
         'PRP$', 'RB', 'RBR', 'RBS', 'RP', 'TO', 'UH', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'WDT', 'WP', 'WP$',
@@ -51,16 +52,16 @@ def wordtypes(path):
         pos = tags.index(i[1])
         result[tag_names[pos]] = result.get(tag_names[pos], []) + [i[0]]
     
-    file.close()
     return result
     
     
 #example output:
 #{'singular proper noun': ['Mr', 'Lockwood', 'Thrushcross', 'Grange'], 'personal pronoun(e.g. my, his, her)': ['your', 'my', 'my'], 'positive adjective': ['new', 'tenant', 'possible'], 'singular noun': ['sir', 'honour', 'arrival', 'hope', 'perseverance', 'occupation', 'yesterday'], 'personal pronoun(e.g. I, he, she)': ['I', 'myself', 'I', 'you', 'I', 'you'], 'singular verb present': ['do', 'have'], 'determiner': ['the', 'the', 'the', 'some'], 'preposition': ['of', 'as', 'after', 'that', 'by', 'in', 'of'], 'present participle verb': ['calling', 'soliciting'], 'positive adverb': ['as', 'soon', 'not'], 'to (e.g. to go to the store)': ['to'], 'regular verb': ['express'], 'past participle verb': ['inconvenienced', 'had'], 'verb past tense': ['heard', 'had'], 'plural noun': ['thoughts']}
 
-w = wordtypes()
+w = wordtypes(path)
 def count_wordtypes(w):
     """
+    Count the amount of words assigned to a certain word type and return as a dictionary
     Variables:
     e = new dictionary
     d = copy of output from wordtypes()
