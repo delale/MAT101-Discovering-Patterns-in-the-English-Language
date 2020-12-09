@@ -23,7 +23,7 @@ def count(word, path):
     book = f.read()
     for ch in book:                                 #Replaces nonletters with spaces
         if ch.isalpha() == False:
-            book = book.replace(ch , " ")
+            book = book.replace(ch , "") # treats don't as dont
 
     wordlist = book.lower().split()
     rubbish = 0                                     #Removes single letters besides i and a

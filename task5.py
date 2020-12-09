@@ -16,12 +16,15 @@ def Wordlist(Path):
     >>> Wordlist('Test1.txt')
     [('there', 5), ('this', 4), ('why', 3), ('are', 3)]
     """
+    # raise error when path is not string
+    if type(Path) != str:
+        raise ValueError('"path" must be of type string')
 
     Book = open(Path, 'r', encoding='utf-8').read()  # Reading in Path
 
     for character in Book:  # Getting rid of all the nonsense
         if character.isalpha() == False:
-            Book = Book.replace(character, " ")
+            Book = Book.replace(character, "") # treats don't as dont
 
     WordList = Book.lower().split()  # Makes Wordlist
     WordList = sorted(set(WordList))  # Makes sure its only one of each word

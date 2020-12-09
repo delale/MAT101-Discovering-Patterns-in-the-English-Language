@@ -16,7 +16,7 @@ def words_per_sentence(path):
     sentencecount = book.count(".")  + book.count("?") + book.count("!")      #Counts sentences
     for ch in book:                                                           #Replaces non letters with spaces
         if ch.isalpha() == False:
-            book = book.replace(ch, " ")
+            book = book.replace(ch, "") # treats don't as dont
 
     wordlist = book.lower().split()                   # Calculates amount of total words
     rubbish = 0                                       #              

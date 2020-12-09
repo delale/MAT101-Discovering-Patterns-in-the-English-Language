@@ -29,6 +29,9 @@ def occurences(path):
     [('happens', 3), ('to', 3), ('this', 3), ('case', 3), ('the', 3), ('be', 3), ('that', 2), ('happen', 2), ('it', 2), ('i', 1), ("doesn't", 1), ("don't", 1), ('but', 1), ('nor', 1), ('not', 1), ('does', 1), ('why', 1), ('know', 1)]
     
     """
+    # raise error when path is not string
+    if type(path) != str:
+        raise ValueError('"path" must be of type string')
 
     ## open the file, read it, make all characters lower-case
     file = open(path, 'r', encoding="utf8")

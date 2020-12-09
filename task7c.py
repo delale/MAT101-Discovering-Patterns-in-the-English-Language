@@ -25,7 +25,7 @@ def wordtypes(path):
     :return: dictionary of all words sorted according to word type
     """
     f = open(path, 'r', encoding="utf8")
-    content = file.read()
+    content = f.read()
     f.close()
     l = []
     tags = ['CC', 'CD', 'DT', 'EX', 'FW', 'IN', 'JJ', 'JJR', 'JJS', 'MD', 'NN', 'NNS', 'NNP', 'NNPS', 'PDT', 'POS', 'PRP',
@@ -58,7 +58,7 @@ def wordtypes(path):
 #example output:
 #{'singular proper noun': ['Mr', 'Lockwood', 'Thrushcross', 'Grange'], 'personal pronoun(e.g. my, his, her)': ['your', 'my', 'my'], 'positive adjective': ['new', 'tenant', 'possible'], 'singular noun': ['sir', 'honour', 'arrival', 'hope', 'perseverance', 'occupation', 'yesterday'], 'personal pronoun(e.g. I, he, she)': ['I', 'myself', 'I', 'you', 'I', 'you'], 'singular verb present': ['do', 'have'], 'determiner': ['the', 'the', 'the', 'some'], 'preposition': ['of', 'as', 'after', 'that', 'by', 'in', 'of'], 'present participle verb': ['calling', 'soliciting'], 'positive adverb': ['as', 'soon', 'not'], 'to (e.g. to go to the store)': ['to'], 'regular verb': ['express'], 'past participle verb': ['inconvenienced', 'had'], 'verb past tense': ['heard', 'had'], 'plural noun': ['thoughts']}
 
-w = wordtypes(path)
+# w = wordtypes(path)
 def count_wordtypes(w):
     """
     Count the amount of words assigned to a certain word type and return as a dictionary
@@ -76,3 +76,9 @@ def count_wordtypes(w):
         length = len(i[1])
         e[i[0]] = length
     return e
+
+if __name__=="__main__":
+    path = "Wuthering Heights.txt"
+    wt = wordtypes(path)
+    print(wt)
+    print(count_wordtypes(wt))

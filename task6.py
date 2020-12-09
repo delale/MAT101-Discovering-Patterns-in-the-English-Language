@@ -26,6 +26,10 @@ def instances(path, keyword):
     >>> instances("Wuthering Heights.txt", "memories") 
     ['  That is the sole consideration which can make me endure the whelp: I despise him for himself, and hate him for the memories he revives!']
     """
+    # raise error when word or path are not strings
+    if type(path) != str or type(keyword) != str:
+        raise ValueError('"path" and "keyword" must be of type string')
+
     file = open(path, 'r', encoding='utf-8')  # the encoding needs to be adjusted, depending on how the novel is saved
     content = file.read()
     sentences_with_keyword = []
@@ -33,7 +37,7 @@ def instances(path, keyword):
 
     # make keyword lower, so that capitalization doesn't become an issue
     keyword = keyword.lower()
-    # insert markers for alternative punctuation, so that origianal punctuation can be restored in the end
+    # insert markers for alternative punctuation, so that original punctuation can be restored in the end
     punctuation = ['ecsm.', 'gtsm.', 'slsm.', 'ccma']
     marks = ['!', '?', '--', ',']
     for k, v in enumerate(marks):
