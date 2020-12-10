@@ -59,7 +59,7 @@ def occurences(path):
 
     ## Sorting the pairs already in the return statement with the sorted function for all items and sorting
     ## for the value of each key
-    ## sorted(dict.items()) returns a list of ordered tuples (pairs) based on the key
+    ## sorted(dict.items()) returns a list of tuples (pairs), then ordered based on the key
     ## operator.itemgetter(1) takes the second value in each tuple
     ## this is then assigned to the key param in sorted()
     return sorted(dict.items(), key=itemgetter(1), reverse=True)
