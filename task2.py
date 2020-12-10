@@ -5,9 +5,8 @@ More concretely, define a function that takes the file path to a text file as in
 each consisting of a word and the number of times the word occurs in the text. The list should be in decreasing order.
 Even for longer texts, such as Wuthering Heights, the execution of your program should take less than 30 seconds.
 
-For the doctest to work, please make sure the file 'Test.txt' and 'Test2.txt' are in the directory.
+For the doctest to work, please make sure the file 'Test1.txt' and 'Test2.txt' are in the directory.
 """
-import matplotlib.pyplot as plt
 
 from operator import itemgetter ## for better dictionary sorting
 from string import punctuation # for removing punctuation
