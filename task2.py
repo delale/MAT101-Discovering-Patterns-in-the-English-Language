@@ -71,8 +71,6 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
-    print(occurences("Wuthering Heights.txt"))
-
     # time testing
     import timeit
     from numpy import mean
