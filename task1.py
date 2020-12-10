@@ -14,7 +14,6 @@ def instances(word, path):
     Takes a word as input and finds all lines that contain the word
     returning a list of lists where each list is composed of 2 elements:
     the line and the line number
-
     >>> instances('admired', 'Wuthering Heights.txt')
     [('the heating spices; and admired the shining kitchen utensils, the', 1840), ('expedition to the Crags.  While I admired and they laboured, dusk drew', 11535)]
     >>> instances('vast', 'Wuthering Heights.txt')
@@ -45,8 +44,8 @@ def instances(word, path):
         lori = l # copy of original
         l = l.translate(str.maketrans(punctuation.replace("'",""), " "*(len(punctuation)-1))) # punctuation except '-> " "
         w = w.translate(str.maketrans(punctuation.replace("'",""), " "*(len(punctuation)-1)))
-        l = l.replace("'", "") # ' -> None
-        w = w.replace("'", "")
+        l = l.replace("'", "").lower() # ' -> None
+        w = w.replace("'", "").lower()
 
         # create list containing all the words in the line, all in lower case, with non-alphabetic characters removed
         line = l.split()
@@ -62,6 +61,6 @@ def instances(word, path):
         return "{} is not found in the file {}".format(word, path)
 
 
-if __name__ == "__main__":
+if __name__=="__main__":
     import doctest
     doctest.testmod()
