@@ -12,6 +12,8 @@ Than he can enter a word and the program will show him how the percentage of the
 changes over time. It does of course depend a lot on the author and subject of the book, we just try to see in some examples if we can
 figure out some basic trends of a worduse.
 
+The files should be placed in the "Count" subdirectory and have names such as "Book[year].txt"
+
 '''
 
 def count(word, path):
@@ -43,15 +45,16 @@ def count(word, path):
     return ((wordcount / totalwords)* 100)          #Returns percentage of the word compared to all words
 
 word = "behold" # input("Which word do you wanna analyse? ")  #Depending if you want to let the user type in a word or not
-filelist=glob.glob(" *.txt")          #Makes a list of all text files
+filelist=glob.glob("./Count/*.txt")          #Makes a list of all text files
 
 years = []                            #empty lists
 wordpercentages = []                  #
 for year in range(1820 , 1921):                     
     possible_path = "Book" + str(year) + ".txt"      
-    if possible_path in filelist:                            #If Book is found with right Title, it is added to our data set
-        years.append(year)                                                  #Adds a year
-        wordpercentages.append(round(count(word , possible_path) , 5))      #Adds the Wordpercentage
+    for filepath in filelist:
+        if possible_path in filepath:                            #If Book is found with right Title, it is added to our data set
+            years.append(year)                                                  #Adds a year
+            wordpercentages.append(round(count(word , filepath) , 5))      #Adds the Wordpercentage
 plt.plot(years, wordpercentages)                                            #Plot
 plt.xlabel("Years")
 plt.ylabel("Percentage-use of word: " + word)
