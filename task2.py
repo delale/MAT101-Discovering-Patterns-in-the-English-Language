@@ -45,8 +45,9 @@ def occurences(path):
     ## str.maketrans creates a translation mapping for translate method
     ## apostrophes are deliberately not in the list of punctuation and are instead removed afterwards
     ## this is so that e.g. "don't" becomes "dont" and not "don t"
-    content = content.translate(str.maketrans("", "", punctuation)) # all punctuation is set to None
-
+    content = content.translate(str.maketrans(punctuation.replace("'",""), " "*(len(punctuation)-1))) # all punctuation is set to " " except '
+    content = content.replace("'", "") # ' set to ""
+    
     #add words to the list 'temp'
     temp_list = content.split()
 
@@ -70,6 +71,8 @@ def occurences(path):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
+    print(occurences("Wuthering Heights.txt"))
 
     # time testing
     import timeit

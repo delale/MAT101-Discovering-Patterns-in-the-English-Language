@@ -26,7 +26,11 @@ def count(word, path):
 
     for ch in book:
         if ch.isalpha() == False:
-            book = book.replace(ch , "") # treats don't as dont
+            
+            if ch=="'":
+                book = book.replace(ch, "") # handles doesn't as doesnt
+            else: 
+                book = book.replace(ch , " ") # punctuation -> " "
 
     wordlist = book.lower().split()
     rubbish = 0                                     #Removes single letters besides i and a

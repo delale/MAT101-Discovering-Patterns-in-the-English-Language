@@ -43,8 +43,10 @@ def instances(word, path):
     # itertiong through the lines: i=line number, l=line
     for i,l in enumerate(lines):
         lori = l # copy of original
-        l = l.translate(str.maketrans("","",punctuation)) # punctuation -> None
-        w = w.translate(str.maketrans("","",punctuation))
+        l = l.translate(str.maketrans(punctuation.replace("'",""), " "*len((punctuation)-1))) # punctuation except '-> " "
+        w = w.translate(str.maketrans(punctuation.replace("'",""), " "*len((punctuation)-1)))
+        l = l.replace("'", "") # ' -> None
+        w = w.replace("'", "")
 
         # create list containing all the words in the line, all in lower case, with non-alphabetic characters removed
         line = l.split()

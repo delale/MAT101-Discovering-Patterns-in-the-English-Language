@@ -27,7 +27,11 @@ def Wordlist(Path):
 
     for character in Book:  # Getting rid of all the nonsense
         if character.isalpha() == False:
-            Book = Book.replace(character, "") # treats don't as dont
+            
+            if character=="'":
+                Book = Book.replace(character, "") # handles doesn't as doesnt
+            else:
+                Book = Book.replace(character, " ") # punctuation to " "
 
     WordList = Book.lower().split()  # Makes Wordlist
     WordList = sorted(set(WordList))  # Makes sure its only one of each word
