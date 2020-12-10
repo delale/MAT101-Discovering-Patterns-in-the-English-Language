@@ -54,7 +54,7 @@ def instances(word, path):
         # create list containing all the words in the line, all in lower case, with non-alphabetic characters removed
         line = l.split()
 
-        if w.lower() in line:
+        if w in line:
             # if the word is found in the line -> append a list [line, line number]
             out.append((lori.replace("\n", ''), i+1)) # i+1 so it returns the exact line num. in the file
 
