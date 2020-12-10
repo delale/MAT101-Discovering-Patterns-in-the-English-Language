@@ -4,7 +4,7 @@ in a given text file. More concretely, define a function that takes a word and t
 path to a text file as input. Its output should be a list of pairs, each consisting of a
 line in which the word occurs and the corresponding line number.
 
-For the doctest to work, please make sure the file 'Wuthering Heights.txt' is in the directory.
+For the doctest to work, please make sure the files 'Wuthering Heights.txt' and 'Test3.txt' are in the directory.
 """
 
 from string import punctuation
@@ -20,8 +20,12 @@ def instances(word, path):
     [('row, on a vast oak dresser, to the very roof.  The latter had never been', 121)]
     >>> instances('working', 'Wuthering Heights.txt')
     [('working at a fence round a plantation, on the borders of the grounds.  I', 6838), ('occupations of working on the farm and lounging among the moors after', 7009), ('train myself to be capable of working like Hercules, and when everything', 11565)]
-    >>> instances("mustn't", "Wuthering Heights.txt")
-    [("You mustn't think I care little for Catherine, because I behaved so", 6100), ('\'"I\'ll not hold my tongue!" I said; "you mustn\'t touch him.  Let the door", 6269), ("speak so to me?  Mustn't he be made to do as I ask him?  You wicked", 6966), ("I whispered Catherine that she mustn't, on any account, accede to the", 7644), ("my arm over her shoulder.  'You mustn't cry because papa has a cold; be", 8246), ("and to put her back in the stable: you mustn't scold him either, mind.  I", 8842), ("'I knew now that I mustn't tease him, as he was ill; and I spoke softly", 8965), ('me, and that he mustn\'t invent any more falsehoods on the subject."', 9075), ("come to the Grange?  Oh, darling Catherine! you mustn't go and leave,", 9761)]
+    
+    The following test fails because of the way that we handle apostrophes (i.e. treating them as if they weren't there).
+    We get a some false positives, in this case line 2, which is included because of the word "I'll".
+    >>> instances("ill", "Test3.txt")
+    [('I feel ill.', 1), ("'You're ill'", 4)]
+
 
     :param word str: word to search
     :param path str: path of the file in which to search the word
