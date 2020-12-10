@@ -16,6 +16,13 @@ def Wordlist(Path):
 
     >>> Wordlist('Test1.txt')
     [('there', 5), ('this', 4), ('why', 3), ('are', 3)]
+
+    One might expect a word like "doesn't" to be counted as having 7 letters. 
+    Since we're treating apostrophes as if they didn't exist, instead we will have "doesnt" in our list, with length 6.
+    Likewise we will have "dont" as length 4 instead of "don't" with length 5.
+    Therefore the following test fails:
+    >>> Wordlist('Test2.txt')
+    [('happens', 7), ("doesn't", 7), ('happen', 6), ("don't", 5), ('this', 4), ('that', 4), ('know', 4), ('does', 4), ('case', 4), ('why', 3), ('the', 3), ('not', 3), ('nor', 3), ('but', 3), ('to', 2), ('it', 2), ('be', 2), ('i', 1)]
     """
     # raise error when path is not string
     if type(Path) != str:
