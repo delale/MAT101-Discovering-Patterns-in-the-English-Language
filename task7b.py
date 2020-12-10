@@ -4,6 +4,7 @@ from cleaning import cleanGut
 '''
 This program calculates the average sentence length authors use in a book.
 Any Book as text file can be entered with the Title: Author_NAMEOFAUTHOR_BOOKTITLE (NAMEOFAUTHOR and BOOKTITLE can be chosen)
+Files should be placed in the Words_per_sentence subdirectory
 
 '''
 
@@ -35,11 +36,10 @@ def words_per_sentence(path):
 
     return totalwords/sentencecount                   #Returns average words per sentence
 
-filelist = glob.glob(" *.txt")        #Takes all filenames
+filelist = glob.glob("./Words_per_sentence/*.txt")        #Takes all filenames
 
 for i in range(len(filelist)):              
-    if filelist[i][0:6] == "Author":            #Identifies files we wanna analyse the authors sentence length
+    if "Author" in filelist[i]:            #Identifies files we wanna analyse the authors sentence length
         authorlist = filelist[i].split("_")     #Splits the file name at "_"'s
         w_p_s = round(words_per_sentence(filelist[i]), 3)     #Words per sentence function get called
-        print("The author {} uses an average of {} words a sentence, in his book '{}'."  .format(authorlist[1] , w_p_s , authorlist[2][:-4]))
-
+        print("The author {} uses an average of {} words a sentence in their book '{}'."  .format(authorlist[3] , w_p_s , authorlist[4][:-4]))
