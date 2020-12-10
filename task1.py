@@ -7,8 +7,6 @@ line in which the word occurs and the corresponding line number.
 For the doctest to work, please make sure the file 'Wuthering Heights.txt' is in the directory.
 """
 
-from string import punctuation
-
 def instances(word, path):
     """
     Takes a word as input and finds all lines that contain the word
@@ -16,13 +14,11 @@ def instances(word, path):
     the line and the line number
 
     >>> instances('admired', 'Wuthering Heights.txt')
-    [('the heating spices; and admired the shining kitchen utensils, the', 1840), ('expedition to the Crags.  While I admired and they laboured, dusk drew', 11535)]
+    [('the heating spices; and admired the shining kitchen utensils, the', 1839), ('expedition to the Crags.  While I admired and they laboured, dusk drew', 11534)]
     >>> instances('vast', 'Wuthering Heights.txt')
-    [('row, on a vast oak dresser, to the very roof.  The latter had never been', 121)]
+    [('row, on a vast oak dresser, to the very roof.  The latter had never been', 120)]
     >>> instances('working', 'Wuthering Heights.txt')
-    [('working at a fence round a plantation, on the borders of the grounds.  I', 6838), ('occupations of working on the farm and lounging among the moors after', 7009), ('train myself to be capable of working like Hercules, and when everything', 11565)]
-    >>> instances("mustn't", "Wuthering Heights.txt")
-    [("You mustn't think I care little for Catherine, because I behaved so", 6100), ('\'"I\'ll not hold my tongue!" I said; "you mustn\'t touch him.  Let the door", 6269), ("speak so to me?  Mustn't he be made to do as I ask him?  You wicked", 6966), ("I whispered Catherine that she mustn't, on any account, accede to the", 7644), ("my arm over her shoulder.  'You mustn't cry because papa has a cold; be", 8246), ("and to put her back in the stable: you mustn't scold him either, mind.  I", 8842), ("'I knew now that I mustn't tease him, as he was ill; and I spoke softly", 8965), ('me, and that he mustn\'t invent any more falsehoods on the subject."', 9075), ("come to the Grange?  Oh, darling Catherine! you mustn't go and leave,", 9761)]
+    [('working at a fence round a plantation, on the borders of the grounds.  I', 6837), ('occupations of working on the farm and lounging among the moors after', 7008), ('train myself to be capable of working like Hercules, and when everything', 11564)]
 
     :param word str: word to search
     :param path str: path of the file in which to search the word
@@ -30,7 +26,6 @@ def instances(word, path):
                   line and line number where the word was found
     """
 
-    w = word # copy to work on, word = original for return
     # raise error when word or path are not strings
     if type(path)!=str or type(word)!=str:
         raise ValueError('"path" and "word" must be of type string')
@@ -40,27 +35,23 @@ def instances(word, path):
     f.close()
     out = []
 
+    word = "".join([character.lower() for character in word if character.isalpha() or character == " "])
+
     # itertiong through the lines: i=line number, l=line
     for i,l in enumerate(lines):
-        lori = l # copy of original
-        l = l.translate(str.maketrans(punctuation.replace("'",""), " "*(len(punctuation)-1))) # punctuation except '-> " "
-        w = w.translate(str.maketrans(punctuation.replace("'",""), " "*(len(punctuation)-1)))
-        l = l.replace("'", "") # ' -> None
-        w = w.replace("'", "")
 
         # create list containing all the words in the line, all in lower case, with non-alphabetic characters removed
-        line = l.split()
+        line = "".join([character.lower() for character in l if character.isalpha() or character == " "]).split()
 
-        if w.lower() in line:
+        if word.lower() in line:
             # if the word is found in the line -> append a list [line, line number]
-            out.append((lori.replace("\n", ''), i+1)) # i+1 so it returns the exact line num. in the file
+            out.append((l.replace('\n', ''), i+1))
 
     # different returns if the word was ever found in the file or not
     if len(out) > 0:
         return out
     else:
         return "{} is not found in the file {}".format(word, path)
-
 
 if __name__ == "__main__":
     import doctest
