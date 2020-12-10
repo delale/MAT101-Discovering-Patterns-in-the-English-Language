@@ -7,6 +7,7 @@ Even for longer texts, such as Wuthering Heights, the execution of your program 
 
 For the doctest to work, please make sure the file 'Test.txt' and 'Test2.txt' are in the directory.
 """
+import matplotlib.pyplot as plt
 
 from operator import itemgetter ## for better dictionary sorting
 from string import punctuation # for removing punctuation
@@ -64,17 +65,25 @@ def occurences(path):
     ## this is then assigned to the key param in sorted()
     return sorted(dict.items(), key=itemgetter(1), reverse=True)
 
-"""
-# time testing
-import timeit
-from numpy import mean
-t=[]
-for i in range(10): # this is testing 10 times the time to run the function on the big file and then prints the mean
-    t.append(timeit.timeit("occurences('Wuthering Heights.txt')", setup="from __main__ import occurences", number=1))
-print(mean(t))
-"""
 
 # doctest
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
+    # time testing
+    import timeit
+    from numpy import mean
+    t=[]
+    for i in range(10): # this is testing 10 times the time to run the function on the big file and then prints the mean
+    	t.append(timeit.timeit("occurences('Wuthering Heights.txt')", setup="from __main__ import occurences", number=1))
+    print(mean(t))
+
+    # plotting time testing
+    import matplotlib.pyplot as plt
+    plt.plot(t, '*')
+    plt.hlines(mean(t), xmin=0, xmax=9, colors='red', label='mean')
+    plt.xlabel('test')
+    plt.ylabel('time (s)')
+    plt.title('Time testing occurences using Wuthering Heights')
+    plt.show()
