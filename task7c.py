@@ -42,7 +42,7 @@ def wordtypes(path):
         'PRP$', 'RB', 'RBR', 'RBS', 'RP', 'TO', 'UH', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'WDT', 'WP', 'WP$',
         'WRB']
     #tag_names is just a list of names for the tags above, that is more readable, bc the original tags don't make any sense
-    tag_names = ['coordinating conjunction', 'cardinal digit', 'determiner', 'EX', 'foreign word', 'preposition',
+    tag_names = ['coordinating conjunction', 'cardinal digit', 'determiner', 'existential there', 'foreign word', 'preposition',
              'positive adjective', 'comparative adjective', 'superlative adjective', 'modal verb', 'singular noun',
              'plural noun', 'singular proper noun', 'plural proper noun', 'predeterminer', 'possessive ending',
              'personal pronoun(e.g. I, he, she)', 'personal pronoun(e.g. my, his, her)', 'positive adverb',
@@ -59,7 +59,7 @@ def wordtypes(path):
     #keys = elements from tag_names
     #values = words from text file that were assigned to one of the tags
     for i in h:
-        if i[1] == '':
+        if i[1] not in tags:
             pass
         else:
             pos = tags.index(i[1])
