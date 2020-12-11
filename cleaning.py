@@ -1,12 +1,13 @@
 def cleanGut(fyle):
     """
     Function to clean in a general sense Project Gutenberg texts.
-    Finds START and END by looking for the ***.
+    Reads in the parsed file.
+    Finds START and END by looking for ***.
     Removes some of the unnecessary words (not all).
-    IT DOES NOT REMOVE PUNCTUATION
+    DOES NOT REMOVE PUNCTUATION.
 
     :param fyle str: Gutenberg text file to be cleaned
-    :return str: cleaned Gutenberg text file with each line separated by \n
+    :return str: cleaned Gutenberg text file with each line separated by '\n'
     """
 
     content = fyle.read()
