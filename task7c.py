@@ -59,8 +59,11 @@ def wordtypes(path):
     #keys = elements from tag_names
     #values = words from text file that were assigned to one of the tags
     for i in h:
-        pos = tags.index(i[1])
-        result[tag_names[pos]] = result.get(tag_names[pos], []) + [i[0]]
+        if i == '':
+            pass
+        else:
+            pos = tags.index(i[1])
+            result[tag_names[pos]] = result.get(tag_names[pos], []) + [i[0]]
     
     return result
     
