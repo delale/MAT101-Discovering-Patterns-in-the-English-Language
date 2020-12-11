@@ -55,7 +55,7 @@ def instances(word, path):
         line = l.split()
 
         if w in line:
-            # if the word is found in the line -> append a list [line, line number]
+            # if the word is found in the line -> append a tuple (line, line number)
             out.append((lori.replace("\n", ''), i+1)) # i+1 so it returns the exact line num. in the file
 
     # different returns if the word was ever found in the file or not
