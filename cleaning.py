@@ -33,7 +33,3 @@ def cleanGut(fyle):
     clean = [x for i,x in enumerate(lyst) if i not in toberm]
 
     return "\n".join(clean)
-
-if __name__=="__main__":
-
-    cleanGut(open("Wuthering Heights.txt", 'r'))
