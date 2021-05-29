@@ -1,0 +1,51 @@
+"""
+Present your findings from Task 4 graphically with the help of matplotlib. (For a
+quick introduction to matplotlib go to: http://matplotlib.org/users/pyplot_
+tutorial.html). Illustrate how often the 20 most frequent words occur. Compare
+at least 5 novels
+
+With {}:
+"""
+
+D={"Title0": "HereTitle","Title1": "HereTitle","Title2": "HereTitle","Title3": "HereTitle","Title4": "HereTitle","Title5": "HereTitle"}   #Titles, They AREN'T in the logical order because of the plot arrangement, Attention
+
+fig,ax=plt.subplots(2,3)                                         #Here I make a Subplot
+fig.suptitle("Excercise 4:.....", fontsize=10)                   #Title of Subplot
+fig.subplots_adjust(wspace=0.3,hspace=0.5,top =0.87)             #Adjustments to the Subplot windows
+
+for x in range(6):                                               #Loop through the 6 Subplots
+
+    D["Result{}".format(x)]=occurences("Book{}.txt".format(x))                          #Calculation of Result
+    D["Word{}".format(x)],D["Number{}".format(x)]=zip(*D["Result{}".format(x)][:20])    #Calculation of the X and Y Values: The Words and their Occurence
+
+    ax[x % 2, x % 3].bar(D["Word{}".format(x)],D["Number{}".format(x)])                 #Subplots 
+    ax[x % 2, x % 3].set_ylabel("Occurances", fontsize=5)
+    ax[x % 2, x % 3].set_xlabel("Word",x=1,ha='right', fontsize=5,labelpad=0)
+    ax[x % 2, x % 3].set_title(D["Title{}".format(x)],fontsize=8)
+    ax[x % 2, x % 3].tick_params(axis="x", labelsize=4, labelrotation=90)
+    ax[x % 2, x % 3].tick_params(axis="y", labelsize=4)
+
+plt.show()
+
+"""
+
+With Lists:
+"""
+
+Titles = ("Title 0", "Title 1", "Title 2", "Title 3", "Title 4", "Title 5")                     #Basically same thing again, just with seperate lists
+Paths = ("Book0.txt", "Book1.txt", "Book2.txt", "Book3.txt", "Book4.txt", "Book5.txt")          #Titles of Files
+Results = [occurences(p) for p in Paths]                                                        #Results
+          
+fig,ax=plt.subplots(2,3)                                                                        #...
+fig.suptitle("Excercise 4:.....", fontsize=10)
+fig.subplots_adjust(wspace=0.3,hspace=0.5,top =0.87)
+
+for x in range (6):
+    Words, Numbers=zip(*Results[x][:20])
+    ax[x % 2, x % 3].bar(Words, Numbers)
+    ax[x % 2, x % 3].set_ylabel("Occurances", fontsize=5)
+    ax[x % 2, x % 3].set_xlabel("Word",x=1,ha='right', fontsize=5,labelpad=0)
+    ax[x % 2, x % 3].set_title(Titles[x],fontsize=8)
+    ax[x % 2, x % 3].tick_params(axis="x", labelsize=4, labelrotation=90)
+    ax[x % 2, x % 3].tick_params(axis="y", labelsize=4)
+plt.show()
